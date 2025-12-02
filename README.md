@@ -1,4 +1,4 @@
-# 📘 Emotion-Aware Brain–Computer Interface (BCI) Using EEG Signals**
+# 📘** Emotion-Aware Brain–Computer Interface (BCI) Using EEG Signals**
 
 ## 🎧 **Emotion-Aware Brain–Computer Interface for Real-Time Music Control**
 
