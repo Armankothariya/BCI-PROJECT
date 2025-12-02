@@ -70,4 +70,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📧 Contact
-For questions or feedback, please open an issue or contact [Your Email].
+For questions or feedback, please open an issue or contact arman.kothariya786@gmail.com 
+
