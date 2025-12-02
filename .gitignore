@@ -1,0 +1,125 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv/
+
+# Data files - EXCLUDE LARGE FILES
+/datasets/
+/data/
+/results/
+/logs/
+/music/
+/saved_models/
+/model_results/
+/exports/
+/cache/
+/backup_*/
+*.csv
+*.npy
+*.npz
+*.h5
+*.hdf5
+*.joblib
+*.pkl
+*.mp3
+*.wav
+*.mp4
+*.zip
+*.tar.gz
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-workspace
+*.sublime-project
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.envrc
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.coverage.*
+coverage.xml
+*.cover
+
+# KEEP these files and directories
+!**/*.py
+!**/*.yaml
+!**/*.yml
+!**/*.md
+!**/*.txt
+!**/README*
+!**/LICENSE*
+!**/requirements*.txt
+!**/setup.py
+!**/MANIFEST.in
+!**/pyproject.toml
+!**/Dockerfile
+!**/docker-compose*.yml
+!**/*.sh
+!**/*.bat
+!**/*.ps1
+!.gitignore
+!.gitattributes
+!.github/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+# Ignore all .txt files
+*.txt
+
+# But keep these
+!requirements.txt
+!important_document.txt
+!another_important.txt

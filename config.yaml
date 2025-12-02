@@ -1,0 +1,173 @@
+# =====================================
+# MASTER CONFIGURATION FILE FOR BCI PROJECT
+# =====================================
+
+# -------------------------
+# Which dataset to use right now?
+# Options: kaggle_temp (Prof. Bird's EEG Emotion Dataset), deap, seed
+# -------------------------
+use_dataset: kaggle_temp  # Prof. Bird's EEG Emotion Dataset (publicly available)
+
+# -------------------------
+# Global settings that affect the entire pipeline
+# -------------------------
+global:
+  apply_feature_extraction: false   # Disabled for tabular dataset
+  include_bandpower: false          # Not used when feature extraction is disabled
+  include_stft: false               # Not used when feature extraction is disabled
+  include_entropy: false            # <--- CRITICAL: Set to FALSE to disable broken sample_entropy
+  include_wavelet: false            # Not used when feature extraction is disabled
+  per_channel_normalization: true   # Whether to normalize each EEG channel separately
+  scaling: standard                 # Options: standard, minmax, none
+  random_state: 42                  # <--- ADDED: Seed for reproducibility
+
+# -------------------------
+# Cross-Dataset Mode (disabled - Advanced feature)
+# -------------------------
+cross_dataset:
+  enabled: false
+  train: deap
+  test: seed
+
+# -------------------------
+# DATASET-SPECIFIC CONFIGURATIONS
+# -------------------------
+datasets:
+  kaggle_temp:
+    format: tabular
+    path: "datasets/kaggle_temp/emotion.csv"  # <--- Use relative path for portability
+    sampling_rate: 128
+    channels:
+      - mean_1_a
+      - mean_2_a
+      - mean_3_a
+      - mean_4_a
+      - mean_d_0_a
+      - mean_d_1_a
+      - mean_d_2_a
+      - mean_d_3_a
+      - mean_d_4_a
+      - mean_d_0_a2
+      - mean_d_1_a2
+      - mean_d_2_a2
+      - mean_d_3_a2
+      - mean_d_4_a2
+      - mean_d_5_a
+      - mean_d_6_a
+      - mean_d_7_a
+      - mean_d_8_a
+      - mean_d_9_a
+      - mean_d_10_a
+      - mean_d_11_a
+      - mean_d_12_a
+      - mean_d_13_a
+      - mean_d_14_a
+      - mean_d_15_a
+      - mean_d_16_a
+      - mean_d_17_a
+      - mean_d_18_a
+      - mean_d_19_a
+      - mean_d_20_a
+      - mean_d_21_a
+      - mean_d_22_a
+      - mean_d_23_a
+      - mean_d_24_a
+      - mean_d_25_a
+      - mean_d_26_a
+      - mean_d_27_a
+      - mean_d_28_a
+      - mean_d_29_a
+      - mean_d_30_a
+      - mean_d_31_a
+    label_column: label
+    test_size: 0.2
+    random_state: 42
+
+  # ==================================================
+  # DEAP DATASET CONFIG (Ready for when you get the data)
+  # ==================================================
+  deap:
+    format: raw                    # <--- RAW EEG data
+    path: "datasets/DEAP/data_mat" # <--- Path to folder containing .mat files
+    sampling_rate: 128             # DEAP's sampling rate is 128Hz
+    binary_threshold: 5            # Threshold for valence (0-9 scale) to create binary labels (high vs low)
+    test_size: 0.2
+    random_state: 42
+    preprocessing:
+      bandpass:
+        lowcut: 4.0                # Filter out very low and high frequencies
+        highcut: 45.0
+        order: 5
+        fs: 128
+
+  # ==================================================
+  # SEED DATASET CONFIG (Alternative to DEAP)
+  # ==================================================
+  seed:
+    format: raw
+    path: "datasets/SEED/ExtractedFeatures" # Path to the folder of .mat files
+    sampling_rate: 200              # SEED's sampling rate is 200Hz
+    test_size: 0.2
+    random_state: 42
+    preprocessing:
+      bandpass:
+        lowcut: 4.0
+        highcut: 45.0
+        order: 5
+        fs: 200
+
+# -------------------------
+# MODEL TRAINING SETTINGS
+# -------------------------
+models:
+  svm: false  # DISABLED: Too slow with 2548 features (takes hours)
+  random_forest: true
+  xgboost: true
+  xgboost_subsample: 0.3  # Fraction of training data to use for XGBoost (for speed)
+  svm_params:            # Hyperparameters for GridSearch
+    C: [1]  # Reduced from [0.1, 1, 10]
+    kernel: ["rbf"]  # Reduced from ["rbf", "linear"]
+    gamma: ["scale"]  # Reduced from ["scale", "auto"]
+  rf_params:             # Hyperparameters for GridSearch (REDUCED FOR SPEED)
+    n_estimators: [100]  # Reduced from [100, 200]
+    max_depth: [20]  # Reduced from [None, 20]
+    min_samples_split: [2]  # Reduced from [2, 5]
+  xgb_params:            # Hyperparameters for GridSearch
+    max_depth: [3, 6]
+    learning_rate: [0.01, 0.1]
+    subsample: [0.8, 1.0]
+
+# -------------------------
+# VISUALIZATION SETTINGS
+# -------------------------
+visualization:
+  enable_confusion_matrix: true
+  enable_accuracy_plot: true
+
+# -------------------------
+# LOGGING & OUTPUT SETTINGS
+# -------------------------
+logs:
+  save_model_summary: true
+
+# -------------------------
+# PATH SETTINGS
+# -------------------------
+paths:
+  results_dir: "results"
+  models_dir: "models"
+  cache_dir: "cache"
+
+# -------------------------
+# MUSIC CONTROLLER SETTINGS
+# -------------------------
+controller:
+  mode: simulation
+  check_interval: 5
+  smoothing_window: 5
+  metrics_log: "results/metrics_log.json"
+
+music_folders:
+  happy: "music/positive"
+  neutral: "music/neutral"
+  negative: "music/negative"

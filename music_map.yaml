@@ -1,0 +1,65 @@
+# music_map.yaml
+# Emotion-to-Music Mapping for BCI System
+# CRITICAL: Emotion labels must match model output!
+# Model outputs: positive, negative, neutral
+
+# NEGATIVE emotion (sad/angry music)
+negative:
+  - file: sad/Alec Benjamin - Let Me Down Slowly [Official Music Video].mp3
+    mood: melancholy
+    tempo: slow
+    intensity: 0.3
+  - file: sad/Halsey - Without Me (Lyrics).mp3
+    mood: heartbreak
+    tempo: medium
+    intensity: 0.4
+  - file: angry/Coolio - Gangsta's Paradise (feat. L.V.) [Official Music Video].mp3
+    mood: dark
+    tempo: medium
+    intensity: 0.8
+  - file: angry/Post Malone ft. 21 Savage - rockstar (Official Music Video).mp3
+    mood: intense
+    tempo: fast
+    intensity: 0.9
+
+# POSITIVE emotion (happy/upbeat music)
+positive:
+  - file: happy/J Balvin, Willy William - Mi Gente (Official Video).mp3
+    mood: party
+    tempo: fast
+    intensity: 0.95
+  - file: happy/Luis Fonsi, Daddy Yankee - Despacito ft. Justin Bieber.mp3
+    mood: romantic
+    tempo: medium
+    intensity: 0.85
+
+# NEUTRAL emotion (calm/relaxed music)
+neutral:
+  - file: relaxed/Coldplay - Hymn For The Weekend (Official Video).mp3
+    mood: calm
+    tempo: medium
+    intensity: 0.5
+  - file: relaxed/Daddy Yankee & Snow - Con Calma (Video Oficial).mp3
+    mood: chill
+    tempo: medium
+    intensity: 0.6
+
+# Default fallback
+default:
+  - file: music/default_ambient_track.mp3
+    mood: neutral
+    tempo: slow
+    intensity: 0.5
+
+# Label mapping from model indices to emotion strings
+label_mapping:
+  0: negative
+  1: neutral
+  2: positive
+
+# Playback options
+options:
+  use_confidence_scaling: true
+  allow_random_pick: true
+  enable_crossfade: true
+  crossfade_duration: 3

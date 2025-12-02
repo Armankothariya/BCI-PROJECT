@@ -1,0 +1,13 @@
+{
+  "user_id": "user_1",
+  "name": "Arman",
+  "age": 20,
+  "gender": null,
+  "baseline_emotion": "positive",
+  "notes": "",
+  "created_at": "2025-11-07T22:16:47.255590",
+  "sessions": [],
+  "total_predictions": 0,
+  "avg_confidence": 0,
+  "dominant_emotion": null
+}
