@@ -38,7 +38,7 @@ This project pioneers a **cutting-edge Brain-Computer Interface (BCI)** that int
   
 | Metric | Performance | Industry Standard |
 |--------|-------------|:-----------------:|
-| **Accuracy** | 🏆 99.06% | 85-95% |
+| **Accuracy** | 🏆 86.6% | 85-95% |
 | **Latency** | ⚡ <10ms | 50-100ms |
 | **Throughput** | 🔄 100+ predictions/sec | 20-50 predictions/sec |
 | **Model Size** | 📦 <10MB | 50-200MB |
